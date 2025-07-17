@@ -237,30 +237,35 @@ export default function Component() {
       </nav>
 
       {/* Hero Section */}
-      <section className="px-4 py-20 md:py-32">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="relative px-4 py-24 md:py-40 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-950 overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 bg-[size:64px_64px] opacity-50"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
+
+        <div className="relative max-w-7xl mx-auto text-center">
           <Badge
             variant="outline"
-            className="mb-6 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300"
+            className="mb-8 border-blue-300 dark:border-blue-700 text-blue-800 dark:text-blue-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 text-sm font-medium"
           >
-            Professional IT Services
+            🚀 Professional IT Services
           </Badge>
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-gray-900 dark:text-white leading-tight tracking-tight">
             Custom Software
             <br />
-            <span className="text-blue-600 dark:text-blue-400">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-600 bg-clip-text text-transparent">
               Development
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-medium">
             Transform your business with tailored software solutions, seamless
             system integration, and expert IT consulting services designed to
             drive growth and efficiency.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button
               size="lg"
-              className="text-lg px-10 py-6 bg-blue-600 hover:bg-blue-700 text-white"
+              className="text-lg px-12 py-7 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-semibold"
             >
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -268,45 +273,93 @@ export default function Component() {
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-10 py-6 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 bg-transparent"
+              className="text-lg px-12 py-7 border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-white dark:hover:bg-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-900 dark:text-white font-semibold transition-all duration-300"
             >
               View Portfolio
             </Button>
+          </div>
+
+          {/* Stats or social proof */}
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                15+
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Projects Delivered
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+                3+
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Years Experience
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                98%
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Client Satisfaction
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">
+                24/7
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Support Available
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section id="services" className="px-4 py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Our Core Services
+      <section
+        id="services"
+        className="relative px-4 py-24 bg-white dark:bg-gray-900"
+      >
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 bg-dot-gray-300 dark:bg-dot-gray-700 bg-[size:20px_20px] opacity-20"></div>
+
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <Badge
+              variant="outline"
+              className="mb-6 border-blue-300 dark:border-blue-700 text-blue-800 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/30 px-4 py-2"
+            >
+              Our Expertise
+            </Badge>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+              Core Services
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Comprehensive technology solutions tailored to your business
-              objectives
+              objectives and growth requirements
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-10">
             {services.map((service, index) => {
               const colorClasses = getColorClasses(service.color);
               return (
                 <Card
                   key={index}
-                  className="group hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
+                  className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-hidden"
                 >
                   <div
-                    className={`absolute inset-0 ${colorClasses.bg} opacity-30 rounded-lg`}
+                    className={`absolute inset-0 ${colorClasses.bg} opacity-10 group-hover:opacity-20 transition-opacity duration-500`}
                   ></div>
                   <CardHeader className="relative pb-4">
                     <div
-                      className={`w-14 h-14 rounded-xl ${colorClasses.icon} flex items-center justify-center mb-6`}
+                      className={`w-16 h-16 rounded-2xl ${colorClasses.icon} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                     >
-                      <service.icon className="h-7 w-7" />
+                      <service.icon className="h-8 w-8" />
                     </div>
-                    <CardTitle className="text-2xl mb-3 text-gray-900 dark:text-white">
+                    <CardTitle className="text-2xl mb-4 text-gray-900 dark:text-white font-bold">
                       {service.title}
                     </CardTitle>
                     <CardDescription className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
@@ -314,20 +367,20 @@ export default function Component() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="relative">
-                    <ul className="space-y-3 mb-6">
+                    <ul className="space-y-4 mb-8">
                       {service.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
                           className="flex items-center text-gray-600 dark:text-gray-300"
                         >
-                          <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                          {feature}
+                          <CheckCircle className="h-5 w-5 text-green-500 mr-4 flex-shrink-0" />
+                          <span className="font-medium">{feature}</span>
                         </li>
                       ))}
                     </ul>
                     <Button
                       variant="ghost"
-                      className={`p-0 h-auto font-semibold ${colorClasses.text}`}
+                      className={`p-0 h-auto font-semibold text-base ${colorClasses.text} hover:underline`}
                     >
                       Learn more
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -341,28 +394,34 @@ export default function Component() {
       </section>
 
       {/* Benefits Section */}
-      <section className="px-4 py-20">
+      <section className="px-4 py-24 bg-gradient-to-br from-gray-50 via-white to-slate-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Why Choose Zainab Consultancy
+          <div className="text-center mb-20">
+            <Badge
+              variant="outline"
+              className="mb-6 border-green-300 dark:border-green-700 text-green-800 dark:text-green-300 bg-green-50 dark:bg-green-950/30 px-4 py-2"
+            >
+              Why Choose Us
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+              The Zainab Advantage
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               We deliver exceptional results through proven methodologies and
-              cutting-edge technology
+              cutting-edge technology solutions
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {benefits.map((benefit, index) => (
               <div key={index} className="text-center group">
-                <div className="w-20 h-20 bg-blue-600 dark:bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <benefit.icon className="h-10 w-10 text-white" />
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-400 dark:to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-xl">
+                  <benefit.icon className="h-12 w-12 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed font-medium">
                   {benefit.description}
                 </p>
               </div>

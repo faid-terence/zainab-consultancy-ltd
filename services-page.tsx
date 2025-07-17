@@ -32,6 +32,11 @@ import { useState } from "react";
 
 export default function Component() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   const services = [
     {
@@ -159,9 +164,19 @@ export default function Component() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white transition-colors duration-300">
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        isDarkMode ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800/50 transition-all duration-300">
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300 ${
+          isDarkMode
+            ? "bg-black/80 border-gray-800/50"
+            : "bg-white/80 border-gray-200/50"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-16">
             <Logo />
@@ -170,36 +185,80 @@ export default function Component() {
             <div className="hidden md:flex items-center space-x-8">
               <a
                 href="#services"
-                className="text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium"
+                className={`transition-colors duration-200 text-sm font-medium ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-600 hover:text-black"
+                }`}
               >
                 Services
               </a>
               <a
                 href="#process"
-                className="text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium"
+                className={`transition-colors duration-200 text-sm font-medium ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-600 hover:text-black"
+                }`}
               >
                 Process
               </a>
               <a
                 href="#contact"
-                className="text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium"
+                className={`transition-colors duration-200 text-sm font-medium ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-600 hover:text-black"
+                }`}
               >
                 Contact
               </a>
-              <ThemeToggle />
-              <Button className="bg-white text-black hover:bg-gray-200 text-sm font-medium px-4 py-2 h-8 rounded-md transition-colors duration-200">
+              <Button
+                onClick={toggleTheme}
+                variant="ghost"
+                size="sm"
+                className={`w-8 h-8 ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white hover:bg-gray-800"
+                    : "text-gray-600 hover:text-black hover:bg-gray-100"
+                }`}
+              >
+                {isDarkMode ? "☀️" : "🌙"}
+              </Button>
+              <Button
+                className={`text-sm font-medium px-4 py-2 h-8 rounded-md transition-colors duration-200 ${
+                  isDarkMode
+                    ? "bg-white text-black hover:bg-gray-200"
+                    : "bg-black text-white hover:bg-gray-800"
+                }`}
+              >
                 Get Started
               </Button>
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center space-x-2">
-              <ThemeToggle />
+              <Button
+                onClick={toggleTheme}
+                variant="ghost"
+                size="sm"
+                className={`w-8 h-8 ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white hover:bg-gray-800"
+                    : "text-gray-600 hover:text-black hover:bg-gray-100"
+                }`}
+              >
+                {isDarkMode ? "☀️" : "🌙"}
+              </Button>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="w-8 h-8 text-gray-400 hover:text-white hover:bg-gray-800"
+                className={`w-8 h-8 ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white hover:bg-gray-800"
+                    : "text-gray-600 hover:text-black hover:bg-gray-100"
+                }`}
               >
                 {mobileMenuOpen ? (
                   <X className="h-4 w-4" />
@@ -213,30 +272,54 @@ export default function Component() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-800/50 bg-black/95 backdrop-blur-md">
+          <div
+            className={`md:hidden border-t backdrop-blur-md ${
+              isDarkMode
+                ? "border-gray-800/50 bg-black/95"
+                : "border-gray-200/50 bg-white/95"
+            }`}
+          >
             <div className="px-6 py-4 space-y-4">
               <a
                 href="#services"
-                className="block text-gray-400 hover:text-white text-sm font-medium transition-colors duration-200"
+                className={`block text-sm font-medium transition-colors duration-200 ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-600 hover:text-black"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Services
               </a>
               <a
                 href="#process"
-                className="block text-gray-400 hover:text-white text-sm font-medium transition-colors duration-200"
+                className={`block text-sm font-medium transition-colors duration-200 ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-600 hover:text-black"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Process
               </a>
               <a
                 href="#contact"
-                className="block text-gray-400 hover:text-white text-sm font-medium transition-colors duration-200"
+                className={`block text-sm font-medium transition-colors duration-200 ${
+                  isDarkMode
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-600 hover:text-black"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
               </a>
-              <Button className="w-full bg-white text-black hover:bg-gray-200 text-sm font-medium py-2 rounded-md">
+              <Button
+                className={`w-full text-sm font-medium py-2 rounded-md transition-colors duration-200 ${
+                  isDarkMode
+                    ? "bg-white text-black hover:bg-gray-200"
+                    : "bg-black text-white hover:bg-gray-800"
+                }`}
+              >
                 Get Started
               </Button>
             </div>
@@ -247,20 +330,42 @@ export default function Component() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden">
         {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black"></div>
+        <div
+          className={`absolute inset-0 ${
+            isDarkMode
+              ? "bg-gradient-to-b from-black via-gray-900/50 to-black"
+              : "bg-gradient-to-b from-gray-50 via-white to-gray-50"
+          }`}
+        ></div>
 
         {/* Animated grid background */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+          <div
+            className={`absolute inset-0 bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] ${
+              isDarkMode
+                ? "bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)]"
+                : "bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)]"
+            }`}
+          ></div>
         </div>
 
         <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center px-3 py-1 mb-8 text-xs font-medium bg-gray-800 border border-gray-700 rounded-full text-gray-300">
+          <div
+            className={`inline-flex items-center px-3 py-1 mb-8 text-xs font-medium border rounded-full transition-colors duration-300 ${
+              isDarkMode
+                ? "bg-gray-800 border-gray-700 text-gray-300"
+                : "bg-gray-100 border-gray-300 text-gray-700"
+            }`}
+          >
             <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
             Available for new projects
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+          <h1
+            className={`text-5xl md:text-7xl font-bold mb-6 tracking-tight transition-colors duration-300 ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
+          >
             Build the future
             <br />
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -268,7 +373,11 @@ export default function Component() {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto font-light">
+          <p
+            className={`text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-light transition-colors duration-300 ${
+              isDarkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             We create exceptional digital experiences through innovative
             software development and strategic technology consulting.
           </p>
@@ -276,7 +385,11 @@ export default function Component() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-gray-200 text-sm font-medium px-6 py-3 h-12 rounded-md transition-all duration-200 hover:scale-105"
+              className={`text-sm font-medium px-6 py-3 h-12 rounded-md transition-all duration-200 hover:scale-105 ${
+                isDarkMode
+                  ? "bg-white text-black hover:bg-gray-200"
+                  : "bg-black text-white hover:bg-gray-800"
+              }`}
             >
               Start Project
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -284,7 +397,11 @@ export default function Component() {
             <Button
               size="lg"
               variant="outline"
-              className="border-gray-700 text-gray-300 hover:text-white hover:border-gray-600 bg-transparent text-sm font-medium px-6 py-3 h-12 rounded-md transition-all duration-200"
+              className={`bg-transparent text-sm font-medium px-6 py-3 h-12 rounded-md transition-all duration-200 ${
+                isDarkMode
+                  ? "border-gray-700 text-gray-300 hover:text-white hover:border-gray-600"
+                  : "border-gray-300 text-gray-700 hover:text-black hover:border-gray-400"
+              }`}
             >
               View Work
             </Button>
@@ -293,20 +410,68 @@ export default function Component() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold mb-2">15+</div>
-              <div className="text-sm text-gray-500">Projects</div>
+              <div
+                className={`text-3xl md:text-4xl font-bold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? "text-white" : "text-black"
+                }`}
+              >
+                15+
+              </div>
+              <div
+                className={`text-sm transition-colors duration-300 ${
+                  isDarkMode ? "text-gray-500" : "text-gray-600"
+                }`}
+              >
+                Projects
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold mb-2">3+</div>
-              <div className="text-sm text-gray-500">Years</div>
+              <div
+                className={`text-3xl md:text-4xl font-bold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? "text-white" : "text-black"
+                }`}
+              >
+                3+
+              </div>
+              <div
+                className={`text-sm transition-colors duration-300 ${
+                  isDarkMode ? "text-gray-500" : "text-gray-600"
+                }`}
+              >
+                Years
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold mb-2">98%</div>
-              <div className="text-sm text-gray-500">Satisfaction</div>
+              <div
+                className={`text-3xl md:text-4xl font-bold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? "text-white" : "text-black"
+                }`}
+              >
+                98%
+              </div>
+              <div
+                className={`text-sm transition-colors duration-300 ${
+                  isDarkMode ? "text-gray-500" : "text-gray-600"
+                }`}
+              >
+                Satisfaction
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold mb-2">24/7</div>
-              <div className="text-sm text-gray-500">Support</div>
+              <div
+                className={`text-3xl md:text-4xl font-bold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? "text-white" : "text-black"
+                }`}
+              >
+                24/7
+              </div>
+              <div
+                className={`text-sm transition-colors duration-300 ${
+                  isDarkMode ? "text-gray-500" : "text-gray-600"
+                }`}
+              >
+                Support
+              </div>
             </div>
           </div>
         </div>
@@ -316,10 +481,18 @@ export default function Component() {
       <section id="services" className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            <h2
+              className={`text-4xl md:text-5xl font-bold mb-6 tracking-tight transition-colors duration-300 ${
+                isDarkMode ? "text-white" : "text-black"
+              }`}
+            >
               Services
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p
+              className={`text-xl max-w-2xl mx-auto transition-colors duration-300 ${
+                isDarkMode ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
               Everything you need to build and scale your digital products.
             </p>
           </div>
@@ -328,18 +501,40 @@ export default function Component() {
             {services.map((service, index) => (
               <Card
                 key={index}
-                className="group bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1"
+                className={`group transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
+                  isDarkMode
+                    ? "bg-gray-900/50 border-gray-800 hover:border-gray-700 hover:shadow-black/20"
+                    : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-gray-200/50"
+                }`}
               >
                 <CardHeader className="p-8">
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-gray-700 transition-colors duration-300">
-                      <service.icon className="h-6 w-6 text-gray-300" />
+                    <div
+                      className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300 ${
+                        isDarkMode
+                          ? "bg-gray-800 group-hover:bg-gray-700"
+                          : "bg-gray-100 group-hover:bg-gray-200"
+                      }`}
+                    >
+                      <service.icon
+                        className={`h-6 w-6 ${
+                          isDarkMode ? "text-gray-300" : "text-gray-600"
+                        }`}
+                      />
                     </div>
                     <div>
-                      <CardTitle className="text-xl mb-2 text-white font-semibold">
+                      <CardTitle
+                        className={`text-xl mb-2 font-semibold transition-colors duration-300 ${
+                          isDarkMode ? "text-white" : "text-black"
+                        }`}
+                      >
                         {service.title}
                       </CardTitle>
-                      <CardDescription className="text-gray-400 leading-relaxed">
+                      <CardDescription
+                        className={`leading-relaxed transition-colors duration-300 ${
+                          isDarkMode ? "text-gray-400" : "text-gray-600"
+                        }`}
+                      >
                         {service.description}
                       </CardDescription>
                     </div>
@@ -351,7 +546,9 @@ export default function Component() {
                     {service.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
-                        className="flex items-center text-gray-300 text-sm"
+                        className={`flex items-center text-sm transition-colors duration-300 ${
+                          isDarkMode ? "text-gray-300" : "text-gray-700"
+                        }`}
                       >
                         <CheckCircle className="h-4 w-4 text-green-500 mr-3 flex-shrink-0" />
                         {feature}
@@ -360,7 +557,11 @@ export default function Component() {
                   </ul>
                   <Button
                     variant="ghost"
-                    className="p-0 h-auto text-sm text-gray-400 hover:text-white font-medium"
+                    className={`p-0 h-auto text-sm font-medium transition-colors duration-300 ${
+                      isDarkMode
+                        ? "text-gray-400 hover:text-white"
+                        : "text-gray-600 hover:text-black"
+                    }`}
                   >
                     Learn more
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
@@ -373,13 +574,25 @@ export default function Component() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-32 px-6 bg-gray-950/50">
+      <section
+        className={`py-32 px-6 transition-colors duration-300 ${
+          isDarkMode ? "bg-gray-950/50" : "bg-gray-50/50"
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            <h2
+              className={`text-4xl md:text-5xl font-bold mb-6 tracking-tight transition-colors duration-300 ${
+                isDarkMode ? "text-white" : "text-black"
+              }`}
+            >
               Why work with us
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p
+              className={`text-xl max-w-2xl mx-auto transition-colors duration-300 ${
+                isDarkMode ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
               We combine technical expertise with strategic thinking to deliver
               results.
             </p>
@@ -389,15 +602,37 @@ export default function Component() {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="group text-center p-8 rounded-xl border border-gray-800 bg-gray-900/50 hover:border-gray-700 transition-all duration-300 hover:-translate-y-1"
+                className={`group text-center p-8 rounded-xl border transition-all duration-300 hover:-translate-y-1 ${
+                  isDarkMode
+                    ? "border-gray-800 bg-gray-900/50 hover:border-gray-700"
+                    : "border-gray-200 bg-white hover:border-gray-300"
+                }`}
               >
-                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-gray-700 transition-colors duration-300">
-                  <benefit.icon className="h-6 w-6 text-gray-300" />
+                <div
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-6 transition-colors duration-300 ${
+                    isDarkMode
+                      ? "bg-gray-800 group-hover:bg-gray-700"
+                      : "bg-gray-100 group-hover:bg-gray-200"
+                  }`}
+                >
+                  <benefit.icon
+                    className={`h-6 w-6 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-4">
+                <h3
+                  className={`text-xl font-semibold mb-4 transition-colors duration-300 ${
+                    isDarkMode ? "text-white" : "text-black"
+                  }`}
+                >
                   {benefit.title}
                 </h3>
-                <p className="text-gray-400 leading-relaxed">
+                <p
+                  className={`leading-relaxed transition-colors duration-300 ${
+                    isDarkMode ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
                   {benefit.description}
                 </p>
               </div>
@@ -410,14 +645,25 @@ export default function Component() {
       <section className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            <h2
+              className={`text-4xl md:text-5xl font-bold mb-6 tracking-tight transition-colors duration-300 ${
+                isDarkMode ? "text-white" : "text-black"
+              }`}
+            >
               Trusted by teams
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-gray-900/50 border-gray-800 p-8">
+              <Card
+                key={index}
+                className={`p-8 transition-colors duration-300 ${
+                  isDarkMode
+                    ? "bg-gray-900/50 border-gray-800"
+                    : "bg-white border-gray-200"
+                }`}
+              >
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -427,14 +673,28 @@ export default function Component() {
                       />
                     ))}
                   </div>
-                  <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                  <p
+                    className={`text-lg mb-6 leading-relaxed transition-colors duration-300 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
                     "{testimonial.content}"
                   </p>
                   <div>
-                    <p className="font-semibold text-white">
+                    <p
+                      className={`font-semibold transition-colors duration-300 ${
+                        isDarkMode ? "text-white" : "text-black"
+                      }`}
+                    >
                       {testimonial.name}
                     </p>
-                    <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                    <p
+                      className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      {testimonial.role}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -444,13 +704,26 @@ export default function Component() {
       </section>
 
       {/* Process Section */}
-      <section id="process" className="py-32 px-6 bg-gray-950/50">
+      <section
+        id="process"
+        className={`py-32 px-6 transition-colors duration-300 ${
+          isDarkMode ? "bg-gray-950/50" : "bg-gray-50/50"
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            <h2
+              className={`text-4xl md:text-5xl font-bold mb-6 tracking-tight transition-colors duration-300 ${
+                isDarkMode ? "text-white" : "text-black"
+              }`}
+            >
               How we work
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p
+              className={`text-xl max-w-2xl mx-auto transition-colors duration-300 ${
+                isDarkMode ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
               A proven process that delivers results every time.
             </p>
           </div>
@@ -482,13 +755,27 @@ export default function Component() {
               },
             ].map((phase, index) => (
               <div key={index} className="text-center">
-                <div className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center mx-auto mb-6 font-semibold text-sm">
+                <div
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-6 font-semibold text-sm transition-colors duration-300 ${
+                    isDarkMode
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-200 text-black"
+                  }`}
+                >
                   {phase.step}
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-3">
+                <h3
+                  className={`text-lg font-semibold mb-3 transition-colors duration-300 ${
+                    isDarkMode ? "text-white" : "text-black"
+                  }`}
+                >
                   {phase.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p
+                  className={`text-sm leading-relaxed transition-colors duration-300 ${
+                    isDarkMode ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
                   {phase.description}
                 </p>
               </div>
@@ -500,17 +787,29 @@ export default function Component() {
       {/* CTA Section */}
       <section className="py-32 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+          <h2
+            className={`text-4xl md:text-5xl font-bold mb-6 tracking-tight transition-colors duration-300 ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
+          >
             Ready to build something great?
           </h2>
-          <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+          <p
+            className={`text-xl mb-12 max-w-2xl mx-auto transition-colors duration-300 ${
+              isDarkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             Let's discuss your project and see how we can help bring your vision
             to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-gray-200 text-sm font-medium px-8 py-3 h-12 rounded-md transition-all duration-200"
+              className={`text-sm font-medium px-8 py-3 h-12 rounded-md transition-all duration-200 ${
+                isDarkMode
+                  ? "bg-white text-black hover:bg-gray-200"
+                  : "bg-black text-white hover:bg-gray-800"
+              }`}
             >
               <MessageCircle className="mr-2 h-4 w-4" />
               Start conversation
@@ -518,7 +817,11 @@ export default function Component() {
             <Button
               size="lg"
               variant="outline"
-              className="border-gray-700 text-gray-300 hover:text-white hover:border-gray-600 bg-transparent text-sm font-medium px-8 py-3 h-12 rounded-md transition-all duration-200"
+              className={`bg-transparent text-sm font-medium px-8 py-3 h-12 rounded-md transition-all duration-200 ${
+                isDarkMode
+                  ? "border-gray-700 text-gray-300 hover:text-white hover:border-gray-600"
+                  : "border-gray-300 text-gray-700 hover:text-black hover:border-gray-400"
+              }`}
             >
               <Mail className="mr-2 h-4 w-4" />
               Send email
@@ -528,43 +831,138 @@ export default function Component() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 bg-gray-950/50">
+      <section
+        id="contact"
+        className={`py-32 px-6 transition-colors duration-300 ${
+          isDarkMode ? "bg-gray-950/50" : "bg-gray-50/50"
+        }`}
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-12 tracking-tight">
+          <h2
+            className={`text-4xl font-bold mb-12 tracking-tight transition-colors duration-300 ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
+          >
             Get in touch
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:border-gray-700 transition-colors duration-200">
-              <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <Phone className="h-5 w-5 text-gray-300" />
+            <div
+              className={`p-6 rounded-lg border transition-colors duration-200 ${
+                isDarkMode
+                  ? "border-gray-800 bg-gray-900/50 hover:border-gray-700"
+                  : "border-gray-200 bg-white hover:border-gray-300"
+              }`}
+            >
+              <div
+                className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 mx-auto ${
+                  isDarkMode ? "bg-gray-800" : "bg-gray-100"
+                }`}
+              >
+                <Phone
+                  className={`h-5 w-5 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                />
               </div>
-              <h3 className="font-semibold text-white mb-2">Phone</h3>
-              <p className="text-gray-400 text-sm">+(250) 780958495</p>
+              <h3
+                className={`font-semibold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? "text-white" : "text-black"
+                }`}
+              >
+                Phone
+              </h3>
+              <p
+                className={`text-sm transition-colors duration-300 ${
+                  isDarkMode ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                +(250) 780958495
+              </p>
             </div>
-            <div className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:border-gray-700 transition-colors duration-200">
-              <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <Mail className="h-5 w-5 text-gray-300" />
+            <div
+              className={`p-6 rounded-lg border transition-colors duration-200 ${
+                isDarkMode
+                  ? "border-gray-800 bg-gray-900/50 hover:border-gray-700"
+                  : "border-gray-200 bg-white hover:border-gray-300"
+              }`}
+            >
+              <div
+                className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 mx-auto ${
+                  isDarkMode ? "bg-gray-800" : "bg-gray-100"
+                }`}
+              >
+                <Mail
+                  className={`h-5 w-5 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                />
               </div>
-              <h3 className="font-semibold text-white mb-2">Email</h3>
-              <p className="text-gray-400 text-sm">zainabseryu@gmail.com</p>
+              <h3
+                className={`font-semibold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? "text-white" : "text-black"
+                }`}
+              >
+                Email
+              </h3>
+              <p
+                className={`text-sm transition-colors duration-300 ${
+                  isDarkMode ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                zainabseryu@gmail.com
+              </p>
             </div>
-            <div className="p-6 rounded-lg border border-gray-800 bg-gray-900/50 hover:border-gray-700 transition-colors duration-200">
-              <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <MessageCircle className="h-5 w-5 text-gray-300" />
+            <div
+              className={`p-6 rounded-lg border transition-colors duration-200 ${
+                isDarkMode
+                  ? "border-gray-800 bg-gray-900/50 hover:border-gray-700"
+                  : "border-gray-200 bg-white hover:border-gray-300"
+              }`}
+            >
+              <div
+                className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 mx-auto ${
+                  isDarkMode ? "bg-gray-800" : "bg-gray-100"
+                }`}
+              >
+                <MessageCircle
+                  className={`h-5 w-5 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                />
               </div>
-              <h3 className="font-semibold text-white mb-2">Chat</h3>
-              <p className="text-gray-400 text-sm">Available 24/7</p>
+              <h3
+                className={`font-semibold mb-2 transition-colors duration-300 ${
+                  isDarkMode ? "text-white" : "text-black"
+                }`}
+              >
+                Chat
+              </h3>
+              <p
+                className={`text-sm transition-colors duration-300 ${
+                  isDarkMode ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                Available 24/7
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-12 border-t border-gray-800">
+      <footer
+        className={`px-6 py-12 border-t transition-colors duration-300 ${
+          isDarkMode ? "border-gray-800" : "border-gray-200"
+        }`}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <Logo className="mb-4 md:mb-0" />
-            <p className="text-gray-500 text-sm">
+            <p
+              className={`text-sm transition-colors duration-300 ${
+                isDarkMode ? "text-gray-500" : "text-gray-600"
+              }`}
+            >
               © 2025 Zainab Consultancy Ltd. All rights reserved.
             </p>
           </div>
